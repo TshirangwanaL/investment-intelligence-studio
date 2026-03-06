@@ -1,0 +1,39 @@
+# Virtual environment
+senv/
+venv/
+.venv/
+
+# Environment secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Data / cache (generated at runtime)
+data/
+*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Pytest
+.pytest_cache/
+
+# Cursor
+.cursor/
+
+# Accidental API response files
+Welcome to Alpha Vantage*
