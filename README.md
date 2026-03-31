@@ -1,54 +1,85 @@
 # Investment Intelligence Studio
 
-**Institutional-grade decision support for portfolio managers, equity research analysts, and risk teams.**
+AI-powered investment decision-support platform for equity research, portfolio analysis, and risk monitoring.
 
-> This is a decision-support application, not an execution system. The default portfolio is a paper portfolio stored locally in SQLite. LLM agents produce analysis and proposals — only app-controlled commit functions may modify portfolio state after validation.
+> This is a decision-support application, not a trade execution system.  
+> LLM agents generate analysis and proposals, while portfolio changes are only applied through app-controlled commit functions after validation.
 
+## What it does
+
+Investment Intelligence Studio combines external market and macro data, quantitative analytics, and constrained LLM workflows into a single research environment.
+
+Core capabilities include:
+- equity research support using filings, market data, and news
+- portfolio risk analysis using quantitative metrics and factor models
+- market narrative generation using macro and event signals
+- governance-controlled proposal workflows with validation and audit logging
+
+## System design
+
+The platform is built around four layers:
+
+1. **Data layer**  
+   Modular data adapters retrieve market, macro, filings, earnings, and news data from external sources.
+
+2. **Quant layer**  
+   Quantitative modules compute portfolio metrics, factor exposures, stress tests, and policy checks.
+
+3. **Agent layer**  
+   Constrained LLM agents generate stock theses, market narratives, portfolio assessments, and decision notes.
+
+4. **Governance layer**  
+   Validation, audit logging, and controlled write paths ensure proposals are reviewed before portfolio state is changed.
+
+## Example workflow
+
+A typical workflow looks like this:
+
+- market and macro data are pulled through external adapters
+- quant modules compute portfolio and factor analytics
+- specialist agents generate research and risk outputs
+- a synthesizer produces a structured decision note
+- governance checks validate whether the proposed action can proceed
+- only app-controlled functions may commit approved changes
+
+## Key engineering decisions
+
+### 1. Agents do not write directly
+LLM agents can analyse data and propose actions, but they cannot directly modify portfolio state. This reduces execution risk and keeps control with the application layer.
+
+### 2. Data access is modular
+Each external source is wrapped in a dedicated adapter, which improves maintainability and makes provider changes easier to handle.
+
+### 3. Quant and LLM responsibilities are separated
+Quantitative calculations are handled by deterministic Python modules, while LLMs are used for synthesis, explanation, and structured decision support.
+
+### 4. Reliability is designed in
+The system uses validation, caching, logging, and governance checks to improve consistency and traceability.
+
+## Architecture overview
 ---
 
-## Architecture Overview
+## End-to-end capabilities
 
-```
-├── app.py                    # Streamlit main entry
-├── pages/                    # Streamlit multi-page app
-│   ├── 1_Equity_Research.py
-│   ├── 2_Portfolio_Manager.py
-│   ├── 3_Market_News.py
-│   └── 4_Audit_Trail.py
-├── schemas/                  # Pydantic domain models
-├── mcp_servers/              # MCP tool servers (data adapters)
-│   ├── alpha_vantage.py      # Market data (OHLC, technicals)
-│   ├── fred.py               # Macro / economic data
-│   ├── sec_edgar.py          # SEC filings
-│   ├── gdelt.py              # Global news / events
-│   ├── fmp.py                # Earnings calendar & transcripts
-│   └── quant_mcp.py          # Internal safe-compute quant server
-├── quant/                    # Quantitative engine
-│   ├── portfolio_metrics.py  # Vol, correlation, drawdown
-│   ├── factor_model.py       # Fama-French factor regression
-│   ├── stress_testing.py     # Scenario library
-│   └── constraints.py        # Investment policy enforcement
-├── agents/                   # LLM-powered agents
-│   ├── market_narrative.py   # Regime + macro narrative
-│   ├── equity_analyst.py     # Single-stock thesis
-│   ├── risk_analytics.py     # Portfolio risk assessment
-│   ├── asset_manager.py      # Rebalancing + trade plans
-│   ├── decision_synthesizer.py # IC decision note
-│   └── orchestrator.py       # Multi-agent workflow
-├── governance/               # Governance controls
-│   ├── autopilot.py          # Hybrid autopilot validator
-│   └── drift_detection.py    # Thesis drift detection
-├── persistence/              # SQLite persistence layer
-│   ├── database.py           # Schema + CRUD
-│   ├── audit_log.py          # Audit trail
-│   └── thesis_store.py       # Thesis persistence
-├── cache/                    # API response caching
-├── tests/                    # Test suite
-├── config.py                 # Centralised configuration
-├── .env.example              # Environment variable template
-└── requirements.txt          # Python dependencies
-```
+### Equity research
+- pull company and market context
+- review filings and earnings context
+- generate a structured stock thesis
 
+### Portfolio analysis
+- calculate volatility, drawdown, and concentration metrics
+- evaluate factor exposures using Fama-French models
+- assess portfolio-level risk and policy alignment
+
+### Market intelligence
+- combine macro indicators and event/news signals
+- generate a market regime narrative
+- surface risks relevant to positioning
+
+### Governance and control
+- classify proposed actions for review
+- maintain audit trails for tool usage and decisions
+- restrict portfolio changes to validated application paths
 ---
 
 ## Setup
