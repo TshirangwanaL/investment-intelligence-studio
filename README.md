@@ -15,6 +15,8 @@ Core capabilities include:
 - market narrative generation using macro and event signals
 - governance-controlled proposal workflows with validation and audit logging
 
+Data adapters → Quant engine → Specialist agents → Decision synthesizer → Governance validator → App-controlled commit
+
   ## Why this project matters
 
 This project was designed to explore how LLM-based systems can support investment workflows without replacing deterministic analytics or governance controls.
