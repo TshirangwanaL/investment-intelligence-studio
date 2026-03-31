@@ -99,7 +99,7 @@ The system uses validation, caching, logging, and governance checks to improve c
 ### 1. Clone and install dependencies
 
 ```bash
-cd Day9
+cd investment-intelligence-studio
 python -m venv venv
 # Windows:
 venv\Scripts\activate
