@@ -15,6 +15,16 @@ Core capabilities include:
 - market narrative generation using macro and event signals
 - governance-controlled proposal workflows with validation and audit logging
 
+  ## Why this project matters
+
+This project was designed to explore how LLM-based systems can support investment workflows without replacing deterministic analytics or governance controls.
+
+The goal is not automated trading. The goal is to improve research quality, portfolio oversight, and decision support by combining:
+- structured external data access
+- quantitative analytics
+- constrained agent workflows
+- validation and auditability
+
 ## System design
 
 The platform is built around four layers:
