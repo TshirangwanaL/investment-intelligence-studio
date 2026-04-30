@@ -1,4 +1,5 @@
-# Investment Intelligence Studio
+# Investment Intelligence Studio - Multi-Source Investment Data Platform
+Python/Streamlit decision-support platform integrating Alpha Vantage, FRED, SEC EDGAR, GDELT, Financial Modeling Prep and Kenneth French datasets. Worked with JSON API payloads, OHLC market data, macroeconomic time-series, SEC filings/XBRL, news/event text, earnings transcripts and factor datasets; implemented modular adapters, caching, rate limiting, validation, audit logging and governance-controlled LLM workflows.
 
 AI-powered investment decision-support platform for equity research, portfolio analysis, and risk monitoring.
 
